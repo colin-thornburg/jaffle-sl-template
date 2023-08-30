@@ -7,3 +7,16 @@ models:
         tests:
           - not_null
           - unique
+
+semantic_models:
+  - name: stg_customers
+    description: |
+      Customer grain mart.
+    model: ref('stg_customers')
+    entities:
+      - name: customer_stg_primary
+        expr: customer_id
+        type: primary
+    dimensions:
+      - name: customer_name
+        type: categorical
