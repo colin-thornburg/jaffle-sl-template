@@ -32,3 +32,8 @@ sources:
         description: One record per SKU for items sold in stores
       - name: raw_supplies
         description: One record per supply per SKU of items sold in stores
+  - name: fake
+    schema: '{{ target.schema }}'
+    description: E-commerce data
+    tables:
+      - name: raw_customers_blah_blah
