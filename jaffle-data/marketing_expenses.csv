@@ -1,0 +1,10 @@
+campaign_id,campaign_name,start_date,end_date,marketing_expense
+1,Social Media Ads,2023-01-01,2023-01-31,5000
+2,Google Ads,2023-01-01,2023-01-31,7000
+3,Email Marketing,2023-01-01,2023-01-31,3000
+4,Social Media Ads,2023-02-01,2023-02-28,5500
+5,Google Ads,2023-02-01,2023-02-28,7200
+6,Email Marketing,2023-02-01,2023-02-28,3200
+7,Social Media Ads,2023-03-01,2023-03-31,5300
+8,Google Ads,2023-03-01,2023-03-31,7100
+9,Email Marketing,2023-03-01,2023-03-31,3100

@@ -1,0 +1,59 @@
+models:
+  - name: calculate_cac
+    description: This model calculates the Customer Acquisition Cost (CAC) by correlating marketing expenses, new customers acquired, and campaign details.
+    columns:
+      - name: campaign_id
+        description: The unique identifier for each marketing campaign.
+      - name: campaign_name
+        description: The name of the marketing campaign.
+      - name: channel
+        description: The marketing channel used for the campaign.
+      - name: marketing_expense
+        description: The total expense incurred for the marketing campaign.
+      - name: new_customers_acquired
+        description: The number of new customers acquired through the campaign.
+      - name: cac
+        description: The cost of acquiring a new customer through the campaign, calculated as the marketing expense divided by the number of new customers acquired. If no customers were acquired, CAC is null.
+
+semantic_models:
+  - name: cac_calculation
+    defaults:
+      agg_time_dimension: start_date
+    description: |
+      Model to calculate Customer Acquisition Cost (CAC) for marketing campaigns.
+    model: ref('calculate_cac')
+    entities:
+      - name: campaign
+        expr: campaign_id
+        type: primary
+    dimensions:
+      - name: campaign_name
+        type: categorical
+      - name: channel
+        type: categorical
+      - name: start_date
+        type: time
+        type_params:
+          time_granularity: day
+      - name: end_date
+        type: time
+        type_params:
+          time_granularity: day
+    measures:
+      - name: marketing_expense
+        description: Total marketing expense for the campaign.
+        agg: sum
+      - name: new_customers_acquired
+        description: Total number of new customers acquired through the campaign.
+        agg: sum
+      - name: cac
+        description: Customer Acquisition Cost for the campaign.
+        agg: sum
+
+metrics:
+  - name: customer_acquisition_cost
+    description: "Customer Acquisition Cost (CAC) for marketing campaigns"
+    type: simple
+    label: CAC
+    type_params:
+      measure: cac
